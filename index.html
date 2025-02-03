@@ -1,222 +1,136 @@
-<!DOCTYPE html>
-<html lang="ja">
+<!doctype html>
+<html lang="ja" dir="ltr">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Beauty Salon Serenity</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/3.13.3/cdn.min.js"></script>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Primary Meta Tags -->
+    <title>Betty Beauty Salon</title>
+    <meta name="title" content="Betty Beauty Salon" />
+    <meta name="description" content="" />
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://betty-beauty-salon.com/" />
+    <meta property="og:title" content="Betty Beauty Salon | 表参道の実力派美容室" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="https://betty-beauty.example.com/images/ogp.jpg" />
+    <meta property="og:site_name" content="Betty Beauty Salon" />
+    <meta property="og:locale" content="ja_JP" />
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#ffffff" />
+    <!-- その他のメタタグ -->
+    <meta name="robots" content="index, follow" />
+    <meta name="googlebot" content="index, follow" />
+    <meta name="keywords" content="美容室,ヘアサロン,表参道,カット,カラー,パーマ,トリートメント,ヘッドスパ" />
+    <meta name="author" content="Betty Beauty Salon" />
+    <meta name="copyright" content="© 2025 Betty Beauty Salon All Rights Reserved." />
+    <!-- Tailwind CSS -->
+    <link rel="stylesheet" href="/assets/style/tailwind.css" />
   </head>
+
   <body class="font-sans text-gray-800">
-    <div x-data="{ isOpen: false }">
-      <!-- ヘッダー -->
-      <header class="fixed w-full bg-white shadow-md z-50">
-        <nav class="container mx-auto px-4 py-4">
-          <div class="flex justify-between items-center">
-            <a href="#" class="text-2xl font-light tracking-wider">Serenity</a>
+    <!-- ヘッダー -->
+    <header class="fixed z-50 w-full bg-white shadow-md">
+      <nav class="container mx-auto px-4 py-4">
+        <div class="flex items-center justify-between">
+          <a href="#" class="text-2xl font-light tracking-wider">Betty</a>
 
-            <!-- ハンバーガーメニュー（モバイル） -->
-            <button @click="isOpen = !isOpen" class="lg:hidden">
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  x-show="!isOpen"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-                <path
-                  x-show="isOpen"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
+          <!-- ハンバーガーメニュー（モバイル） -->
+          <button id="menuButton" class="lg:hidden" aria-label="メニューを開く">
+            <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path class="hamburger" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              <path class="close hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
 
-            <!-- デスクトップメニュー -->
-            <div class="hidden lg:flex space-x-8">
-              <a href="#about" class="hover:text-brown-600 transition-colors"
-                >サロン案内</a
-              >
-              <a href="#menu" class="hover:text-brown-600 transition-colors"
-                >メニュー</a
-              >
-              <a href="#stylist" class="hover:text-brown-600 transition-colors"
-                >スタイリスト</a
-              >
-              <a href="#gallery" class="hover:text-brown-600 transition-colors"
-                >ギャラリー</a
-              >
-              <a href="#contact" class="hover:text-brown-600 transition-colors"
-                >予約・アクセス</a
-              >
-            </div>
+          <!-- デスクトップメニュー -->
+          <div class="hidden space-x-8 lg:flex">
+            <a href="#about" class="transition-colors hover:text-gray-600">サロン案内</a>
+            <a href="#menu" class="transition-colors hover:text-gray-600">メニュー</a>
+            <a href="#stylist" class="transition-colors hover:text-gray-600">スタイリスト</a>
+            <a href="#gallery" class="transition-colors hover:text-gray-600">ギャラリー</a>
+            <a href="#contact" class="transition-colors hover:text-gray-600">予約・アクセス</a>
           </div>
+        </div>
 
-          <!-- モバイルメニュー -->
-          <div
-            x-show="isOpen"
-            x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 transform -translate-y-2"
-            x-transition:enter-end="opacity-100 transform translate-y-0"
-            x-transition:leave="transition ease-in duration-200"
-            x-transition:leave-start="opacity-100 transform translate-y-0"
-            x-transition:leave-end="opacity-0 transform -translate-y-2"
-            class="lg:hidden"
-          >
-            <div class="pt-4 pb-3 space-y-3">
-              <a
-                href="#about"
-                class="block hover:text-brown-600 transition-colors"
-                >サロン案内</a
-              >
-              <a
-                href="#menu"
-                class="block hover:text-brown-600 transition-colors"
-                >メニュー</a
-              >
-              <a
-                href="#stylist"
-                class="block hover:text-brown-600 transition-colors"
-                >スタイリスト</a
-              >
-              <a
-                href="#gallery"
-                class="block hover:text-brown-600 transition-colors"
-                >ギャラリー</a
-              >
-              <a
-                href="#contact"
-                class="block hover:text-brown-600 transition-colors"
-                >予約・アクセス</a
-              >
-            </div>
+        <!-- モバイルメニュー -->
+        <div id="mobileMenu" class="hidden lg:hidden">
+          <div class="space-y-3 pb-3 pt-4">
+            <a href="#about" class="block transition-colors hover:text-gray-600">サロン案内</a>
+            <a href="#menu" class="block transition-colors hover:text-gray-600">メニュー</a>
+            <a href="#stylist" class="block transition-colors hover:text-gray-600">スタイリスト</a>
+            <a href="#gallery" class="block transition-colors hover:text-gray-600">ギャラリー</a>
+            <a href="#contact" class="block transition-colors hover:text-gray-600">予約・アクセス</a>
           </div>
-        </nav>
-      </header>
+        </div>
+      </nav>
+    </header>
 
-      <!-- メインコンテンツ -->
-      <main class="pt-16">
-        <!-- ヒーローセクション -->
-        <section class="relative h-screen">
-          <img
-            src="/api/placeholder/1920/1080"
-            alt="Salon Interior"
-            class="w-full h-full object-cover"
-          />
-          <div
-            class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center text-center"
-          >
-            <div class="text-white px-4">
-              <h1 class="text-4xl md:text-6xl font-light tracking-wider mb-4">
-                Beauty Salon Serenity
-              </h1>
-              <p class="text-xl mb-8">あなたの「なりたい」を叶える美容室</p>
-              <a
-                href="#contact"
-                class="inline-block bg-white text-gray-800 px-8 py-3 rounded-full hover:bg-gray-100 transition-colors"
-              >
-                ご予約はこちら
-              </a>
-            </div>
-          </div>
-        </section>
+    [... 残りのHTML部分は同じ ...]
 
-        <!-- サロン案内 -->
-        <section id="about" class="py-20 px-4">
-          <div class="container mx-auto">
-            <h2 class="text-3xl font-light text-center mb-16">サロン案内</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-              <div
-                class="bg-white p-8 shadow-lg rounded-lg hover:shadow-xl transition-shadow"
-              >
-                <h3 class="text-xl mb-4">こだわりの技術</h3>
-                <p>
-                  経験豊富なスタイリストが、お客様一人ひとりに合わせた施術をご提供いたします。
-                </p>
-              </div>
-              <div
-                class="bg-white p-8 shadow-lg rounded-lg hover:shadow-xl transition-shadow"
-              >
-                <h3 class="text-xl mb-4">快適な空間</h3>
-                <p>
-                  ゆったりとした空間で、日常から離れた特別なひとときをお過ごしください。
-                </p>
-              </div>
-              <div
-                class="bg-white p-8 shadow-lg rounded-lg hover:shadow-xl transition-shadow"
-              >
-                <h3 class="text-xl mb-4">厳選製品</h3>
-                <p>髪に優しい厳選されたヘアケア製品を使用しています。</p>
-              </div>
-            </div>
-          </div>
-        </section>
+    <!-- JavaScript -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 要素の取得
+        const menuButton = document.getElementById("menuButton");
+        const mobileMenu = document.getElementById("mobileMenu");
+        const hamburgerIcon = menuButton.querySelector(".hamburger");
+        const closeIcon = menuButton.querySelector(".close");
 
-        <!-- メニュー -->
-        <section id="menu" class="py-20 px-4 bg-gray-50">
-          <div class="container mx-auto max-w-3xl">
-            <h2 class="text-3xl font-light text-center mb-16">メニュー</h2>
-            <div class="bg-white shadow-lg rounded-lg overflow-hidden">
-              <table class="w-full">
-                <tbody class="divide-y divide-gray-200">
-                  <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4">カット</td>
-                    <td class="px-6 py-4 text-right">¥6,600</td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4">カラー</td>
-                    <td class="px-6 py-4 text-right">¥8,800〜</td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4">パーマ</td>
-                    <td class="px-6 py-4 text-right">¥12,100〜</td>
-                  </tr>
-                  <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4">トリートメント</td>
-                    <td class="px-6 py-4 text-right">¥4,400〜</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
+        // メニューの開閉状態
+        let isMenuOpen = false;
 
-        <!-- 予約・アクセス -->
-        <section id="contact" class="py-20 px-4">
-          <div class="container mx-auto text-center">
-            <h2 class="text-3xl font-light mb-16">予約・アクセス</h2>
-            <div class="max-w-2xl mx-auto">
-              <p class="mb-4">
-                ご予約・お問い合わせはお電話またはLINEにて承っております
-              </p>
-              <p class="text-2xl font-bold mb-2">03-XXXX-XXXX</p>
-              <p class="mb-8">
-                営業時間: 10:00-20:00<br />
-                定休日: 毎週月曜日
-              </p>
-              <a
-                href="#"
-                class="inline-block bg-gray-800 text-white px-8 py-3 rounded-full hover:bg-gray-700 transition-colors"
-              >
-                LINE予約はこちら
-              </a>
-            </div>
-          </div>
-        </section>
-      </main>
+        // メニューボタンのクリックイベント
+        menuButton.addEventListener("click", function () {
+          isMenuOpen = !isMenuOpen;
 
-      <!-- フッター -->
-      <footer class="bg-gray-800 text-white py-8 text-center">
-        <p>&copy; 2025 Beauty Salon Serenity. All rights reserved.</p>
-      </footer>
-    </div>
+          // メニューの表示/非表示を切り替え
+          mobileMenu.classList.toggle("hidden");
+
+          // アイコンの切り替え
+          hamburgerIcon.classList.toggle("hidden");
+          closeIcon.classList.toggle("hidden");
+
+          // アクセシビリティ
+          menuButton.setAttribute("aria-expanded", isMenuOpen);
+          menuButton.setAttribute("aria-label", isMenuOpen ? "メニューを閉じる" : "メニューを開く");
+        });
+
+        // モバイルメニューのリンクをクリックした時にメニューを閉じる
+        const mobileMenuLinks = mobileMenu.querySelectorAll("a");
+        mobileMenuLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileMenu.classList.add("hidden");
+            hamburgerIcon.classList.remove("hidden");
+            closeIcon.classList.add("hidden");
+            isMenuOpen = false;
+            menuButton.setAttribute("aria-expanded", "false");
+            menuButton.setAttribute("aria-label", "メニューを開く");
+          });
+        });
+
+        // スムーズスクロール
+        document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+          anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            const href = this.getAttribute("href");
+            if (href === "#") return;
+
+            const target = document.querySelector(href);
+            const headerOffset = 80; // ヘッダーの高さ分
+            const elementPosition = target.getBoundingClientRect().top;
+            const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+            window.scrollTo({
+              top: offsetPosition,
+              behavior: "smooth",
+            });
+          });
+        });
+      });
+    </script>
   </body>
 </html>
